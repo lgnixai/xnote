@@ -2,11 +2,15 @@
  import {IExtension} from "aixui";
  import {RssExtension} from "~/extensions/rss/RssExtension.tsx";
  import {ActionsExtension} from "~/extensions/actions";
+ import {MarkdownExtension} from "~/extensions/markdown/MarkdownExtension.tsx";
+ import {InitSomethingExtension} from "~/extensions/init.tsx";
 
 // 所有extendsion的入口集合
 const extensions: IExtension[] = [
+    InitSomethingExtension,
     ActionsExtension,//快捷键绑定
     RssExtension,//rss管理
+    MarkdownExtension,
     // new FolderTreeExtension(),
     // GithubVscodeTheme, // GithubVscodeTheme 主题
     // OneDarkPro, // OneDarkPro 主题

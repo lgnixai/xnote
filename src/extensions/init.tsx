@@ -33,53 +33,15 @@ import { StatusBarService } from "aixui/esm/services/statusBar";
  // 	molecule.editor.setEntry(<EditorEntry />);
  // };
 
- const initActive = (molecule: { contextMenu?: ContextMenuService; auxiliaryBar?: AuxiliaryBarService; layout?: LayoutService; statusBar?: StatusBarService; locale?: LocaleService; builtin?: BuiltinService; menuBar?: MenuBarService; activityBar: any; sidebar: any; explorer?: ExplorerService; folderTree?: FolderTreeService; panel?: PanelService; output?: OutputService; editor?: EditorService; colorTheme?: ColorThemeService; action?: ActionService; editorTree?: EditorTreeService; notification?: NotificationService; search?: SearchService; settings?: SettingsService; }) => {
+ const initActive = (molecule:any) => {
 	// 默认选中的ActivityBar选项
-	molecule.activityBar.setActive(ID_COLLECTIONS.RSS_ID);
-	// 默认选中的Siderbar选项
-	molecule.sidebar.setActive(rssActivityBar.id);
+	 molecule.activityBar.setCurrent(ID_COLLECTIONS.RSS_ID);
+	 // 默认选中的Siderbar选项
+	 molecule.sidebar.setCurrent(rssActivityBar.id);
 };
 
 const initMenuBar = () => {
-	// current={MySidePane.id} panes={[MySidePane]}
-	// 设置水平
-	molecule.layout.setMenuBarMode("horizontal");
-	// 重置默认数据
-	molecule.menuBar.setMenus([]);
-	// TODO 菜单栏 运维中心的图标在左边，应该设置到右边。
 
-	molecule.menuBar.render();
-	molecule.menuBar.setState({
-		logo: <Button type="link">Logo</Button>,
-		data: [
-			{ id: ID_COLLECTIONS.MENU_ALL_PROJECTS_ID, name: "全部产品" },
-			{ id: ID_COLLECTIONS.MENU_DATA_DEV_ID, name: "数据开发" },
-			{ id: ID_COLLECTIONS.MENU_TASK_DEV_ID, name: "任务开发" },
-			{ id: ID_COLLECTIONS.MENU_PUBLISH_CENTER_ID, name: "发布中心" },
-			{
-				id: "operation",
-				name: "运维中心(多)",
-				data: [...OPERATIONS],
-			},
-			{ id: ID_COLLECTIONS.MENU_USER_CONFIG_ID, name: "其他配置" },
-		],
-	});
-	molecule.menuBar.onSelect((record) => {
-		switch (record) {
-			case ID_COLLECTIONS.MENU_USER_CONFIG_ID:
-			case ID_COLLECTIONS.MENU_ALL_PROJECTS_ID:
-				molecule.activityBar.setActive(MoreActivityBar.id); // 活动栏：更多菜单选项
-				molecule.sidebar.setActive(MoreActivityBar.id); // 边栏：更多菜单内容
-				break;
-			case ID_COLLECTIONS.MENU_DATA_DEV_ID:
-			case ID_COLLECTIONS.MENU_TASK_DEV_ID:
-				molecule.activityBar.setActive(dataDevActivityBar.id); // 活动栏：数据开发选项
-				molecule.sidebar.setActive(dataDevActivityBar.id); // 边栏：数据开发内容
-				break;
-			default:
-				break;
-		}
-	});
 };
 
 export const InitSomethingExtension: IExtension = {
@@ -87,6 +49,7 @@ export const InitSomethingExtension: IExtension = {
 	name: "初始化操作",
 
 	activate(molecule: IMoleculeContext): void {
+
 		//initEntry(); // 初始化编辑器入口页
 		initActive(molecule); // 初始化活动栏
 		initMenuBar(); // 初始化菜单栏

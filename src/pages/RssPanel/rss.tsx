@@ -1,5 +1,5 @@
 import cx from 'clsx';
-import classes from "./style.module.scss"
+
 import React, {useEffect, useRef, useState} from 'react';
 import {BiTrash} from 'react-icons/bi';
 
@@ -7,13 +7,10 @@ import {TiDelete} from 'react-icons/ti';
 
 import type {VirtuosoHandle} from 'react-virtuoso';
 import {Virtuoso} from 'react-virtuoso';
-import {selectedNewsAtom, useNews} from "~/hooks/use-news.hooks.ts";
+import {useNews} from "~/hooks/use-news.hooks.ts";
 import {LoadingComponent} from "~/ui/loading.component.tsx";
 import {ArticleComponent} from "~/components/article/article.component.tsx";
 import {FeedsComponent} from "~/pages/RssPanel/feeds.component.tsx";
-import {Group, ScrollArea} from "@mantine/core";
-import Icon from "antd/es/icon";
-import {useSetAtom} from "jotai/index";
 
 
 const RssPanel = () => {
@@ -73,43 +70,51 @@ const RssPanel = () => {
     }
 
     return (
-        <ScrollArea
-            classNames={{
-                viewport: classes.viewport,
-            }}
-            style={{
-                position: "absolute",
-                inset: 12,
-                top: 42,
-            }}>
-            {messages.map((item) => {
+        <div className="w-full h-full relative">
+            <div className="p-1 relative">
+                <input
+                    id="news-search"
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full bg-dark-bg"
 
-                return (
-                    <Group
-                        py="xs"
-                        px="xs"
-                        noWrap
-                        spacing={6}
+                    onKeyDown={handleKeyDown}
+                    // onChange={(e) => setSearch(e.currentTarget.value)}
+                />
+                <span
+                    className={cx(
+                        'absolute cursor-pointer right-2 top-3 opacity-70 hover:opacity-100 transition-opacity',
+                    )}
+                >
+          <TiDelete className="text-lg"/>
+        </span>
+            </div>
+            {messages.length > 0 && (
+                <button
+                    type="button"
+                    className="absolute bottom-3 left-3 z-50 bg-dark-bg w-8 h-8 flex items-center justify-center rounded-full group cursor-pointer shadow-md shadow-dark-bg/70"
 
-                    >
-
-
-
+                >
+                    <BiTrash className="text-dark-border-gray-2 group-hover:text-dark-text-white transition-colors"/>
+                </button>
+            )}
+            <div className="h-[calc(100%-44px)]">
+                <Virtuoso
+                    ref={virtuoso}
+                    data={messages}
+                    totalCount={messages.length}
+                    className="no-scrollbar"
+                    itemContent={(_index, item) => (
                         <FeedsComponent
                             id={item.id}
                             title={item.title}
                             description={item.description}
                             feed_link={item.feed_link}
                             folder_id={item.folder_id}/>
-
-
-
-
-
-                    </Group>
-                );
-            })}
-        </ScrollArea>
+                    )}
+                />
+            </div>
+        </div>
     );
 };
 export default RssPanel

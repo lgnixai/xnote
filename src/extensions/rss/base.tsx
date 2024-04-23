@@ -13,12 +13,14 @@ const rssActivityBar: IActivityBarItem = {
     sortIndex: -1,
     name: RECOURCE_NAME,
     title: RECOURCE_NAME,
-    icon: "code"
+    icon: "rss"
+
 };
 
 const rssSiderPanel: ISidebarPane = {
     id: rssActivityBar.id,
     title: RECOURCE_NAME,
+    name:RECOURCE_NAME,
     render: () => <RssPanel/>,
 };
 
