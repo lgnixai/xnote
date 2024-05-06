@@ -42,7 +42,7 @@
         "react-virtuoso": "^4.7.10",
         "reflect-metadata": "^0.2.2",
         "safe-cex": "^8.4.4",
-        "zod": "^3.23.3",
+        "zod": "^3.23.6",
         "zustand": "^4.5.2"
     },
     "devDependencies": {
