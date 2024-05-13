@@ -90,8 +90,8 @@ dependencies:
     specifier: ^8.4.4
     version: 8.4.4
   zod:
-    specifier: ^3.23.3
-    version: 3.23.3
+    specifier: ^3.23.8
+    version: 3.23.8
   zustand:
     specifier: ^4.5.2
     version: 4.5.2(@types/react@18.2.79)(react@18.2.0)
@@ -5146,8 +5146,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  /zod@3.23.3:
-    resolution: {integrity: sha512-tPvq1B/2Yu/dh2uAIH2/BhUlUeLIUvAjr6dpL/75I0pCYefHgjhXk1o1Kob3kTU8C7yU1j396jFHlsVWFi9ogg==}
+  /zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
     dev: false
 
   /zustand@4.5.2(@types/react@18.2.79)(react@18.2.0):
